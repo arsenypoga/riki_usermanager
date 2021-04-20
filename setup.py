@@ -7,5 +7,5 @@ setup(
     description="User Manager utilities for the Riki",
     author="Arseny Poga",
     author_email="pogaa1@nku.edu",
-    packages=find_packages(include=["riki_usermanager"]),
+    packages=find_packages(),
 )
