@@ -1,6 +1,6 @@
 
 import sqlite3
-from typing import Union
+from typing import Literal, Union
 from .User import User, AuthMethodEnum
 import os
 import hashlib
@@ -19,7 +19,7 @@ class UserManager:
         self.db = db
         self.db.row_factory = sqlite3.Row
 
-    def login(self, username: str, password: str) -> bool:
+    def login(self, username: str, password: str) -> Union[User, Literal[False]]:
         """Logins in a user after username and password have been validated
 
         Args:
@@ -37,7 +37,7 @@ class UserManager:
         if not self.check_password(user, password):
             return False
 
-        return True
+        return user
 
     def logout(self, user: User) -> bool:
         """Logs out the current user
@@ -48,7 +48,7 @@ class UserManager:
         user.authenticated = False
         return self.update(user)
 
-    def register(self, user: 'User') -> bool:
+    def register(self, user: 'User') -> Union['User', Literal[False]]:
         """Creates a new user and authenticates a new user after username and password are validated
 
         Args:
@@ -58,7 +58,7 @@ class UserManager:
         Returns:
             bool: ``True`` on success, else False
         """
-        return self.add_user(user) is not False
+        return self.add_user(user)
 
     def unregister(self, user: User) -> bool:
         """Deletes current user's profile
@@ -68,7 +68,7 @@ class UserManager:
         """
         return self.delete_user(user.get_id())
 
-    def add_user(self, user: 'User'):
+    def add_user(self, user: 'User') -> Union[User, Literal[False]]:
         """Creates new user in the database
 
         Args:
