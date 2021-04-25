@@ -205,10 +205,10 @@ class UserManager:
         authentication_method = user.authentication_method
         result = False
 
-        if authentication_method is AuthMethodEnum.HASH:
+        if authentication_method is AuthMethodEnum.HASH.value:
             result = check_hashed_password(password, user.password)
 
-        elif authentication_method is AuthMethodEnum.CLEARTEXT:
+        elif authentication_method is AuthMethodEnum.CLEARTEXT.value:
             result = (user.password == password)
 
         return result
