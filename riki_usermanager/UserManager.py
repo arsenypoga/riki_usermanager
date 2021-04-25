@@ -1,10 +1,11 @@
 
+import binascii
+import hashlib
+import os
 import sqlite3
 from typing import Literal, Union
-from .User import User, AuthMethodEnum
-import os
-import hashlib
-import binascii
+
+from .User import AuthMethodEnum, User
 
 
 class UserManager:

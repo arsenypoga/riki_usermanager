@@ -13,17 +13,18 @@ class AuthMethodEnum(Enum):
 @dataclass
 class User:
     """Represents User entry in the sqlite3 database
+
     Variables: 
-        username (str): The user's name.  Used as the primary key in the database.
-        password (str): The user's password.  Stored as text in sqlite.
-        roles (str): The roles a user has.  It's a list of string, but will be
+        * username (str): The user's name.  Used as the primary key in the database.
+        * password (str): The user's password.  Stored as text in sqlite.
+        * roles (str): The roles a user has.  It's a list of string, but will be
             stored as a single text value in sqlite.
-        authentication_method (int): Used to reference an authentication
+        * authentication_method (int): Used to reference an authentication
             method by number.
-        authenticated (bool): Flag for whether a user has been authenticated.
+        * authenticated (bool): Flag for whether a user has been authenticated.
             Stored in sqlite as an int.
-        hash (str): Stored result if password has been hashed.
-        anonymous (bool): Flag for anonymous users.  Since a registered user is 
+        * hash (str): Stored result if password has been hashed.
+        * anonymous (bool): Flag for anonymous users.  Since a registered user is 
             not anonymous, this is not stored in sqlite.
     """
     username: str
